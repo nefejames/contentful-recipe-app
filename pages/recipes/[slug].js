@@ -1,14 +1,9 @@
-import { createClient } from "contentful";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Image from "next/image";
-import Skeleton from "../../components/Skeleton";
 import Head from "next/head";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import client from "../../lib/contentful";
+import Skeleton from "../../components/Skeleton";
 import styled from "styled-components";
-
-const client = createClient({
-  space: process.env.CONTENTFUL_SPACE_ID,
-  accessToken: process.env.CONTENTFUL_ACCESS_KEY,
-});
 
 export default function RecipeDetails({ recipe }) {
   if (!recipe) return <Skeleton />;

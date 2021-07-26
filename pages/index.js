@@ -1,7 +1,8 @@
-import { createClient } from "contentful";
 import RecipeCard from "../components/RecipeCard";
 import Head from "next/head";
 import styled from "styled-components";
+import client from "../lib/contentful";
+
 export default function Recipes({ recipes }) {
   return (
     <Container>
@@ -30,11 +31,6 @@ const Container = styled.div`
 `;
 
 export async function getStaticProps() {
-  const client = createClient({
-    space: process.env.CONTENTFUL_SPACE_ID,
-    accessToken: process.env.CONTENTFUL_ACCESS_KEY,
-  });
-
   const res = await client.getEntries();
 
   return {
